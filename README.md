@@ -7,14 +7,14 @@ add new .conf file or change ```default.conf```
 
 ```
 upstream superset {
-    server transparent:9000;
+    server localhost:9000;
 }
 
 server {
     listen 80;
 
     location ~ ^/superset/ {
-        rewrite ^/superset(.*)$ http://transparent/analytics$1 permanent;
+        rewrite ^/superset(.*)$ http://localhost/analytics$1 permanent;
     }
 
 
