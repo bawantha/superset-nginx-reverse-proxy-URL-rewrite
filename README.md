@@ -7,7 +7,7 @@ add new .conf file or change ```default.conf```
 
 ```
 upstream superset {
-    server localhost:9000;
+    server localhost:9000;  // dev-server
 }
 
 server {
