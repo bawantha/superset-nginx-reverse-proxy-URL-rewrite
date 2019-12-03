@@ -14,7 +14,7 @@ server {
     listen 80;
 
     location ~ ^/superset/ {
-        rewrite ^/superset(.*)$ http://localhost/analytics$1 permanent;
+        rewrite ^/superset(.*)$ http://$host/analytics$1 permanent;
     }
 
 
