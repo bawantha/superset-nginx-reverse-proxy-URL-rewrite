@@ -10,12 +10,16 @@ upstream superset {
     server localhost:9000;  // dev-server
 }
 
-server {
-    listen 80;
-
-    location ~ ^/superset/ {
-        rewrite ^/superset(.*)$ http://$host/analytics$1 permanent;
-    }
+ location ~ ^/superset/(.*)$ {
+        #if ($request_method = GET) {
+        #   rewrite ^/superset/(.*)$ http://$host/analytics/$1 last;
+        #}
+        #proxy_set_header Host $host;
+        #proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        #proxy_pass http://superset;
+        #proxy_redirect off;
+        return 307 http://$host/analytics/$1;
+     }
 
 
     location / {
